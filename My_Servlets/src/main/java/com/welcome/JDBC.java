@@ -16,12 +16,9 @@ public class JDBC {
 	        ResultSet rs = null ;
 	        List<Object> stu_list = new ArrayList<>();
 	        try {
-	        Class.forName(
-	            "com.mysql.cj.jdbc.Driver"); // Driver name
-	        Connection con = DriverManager.getConnection(
-	            url, username, password);
-	        System.out.println(
-	            "Connection Established successfully");
+	        Class.forName("com.mysql.cj.jdbc.Driver"); // Driver name
+	        Connection con = DriverManager.getConnection(url, username, password);
+	        System.out.println("Connection Established successfully");
 	        
 	        Statement st = con.createStatement();
 	        rs = st.executeQuery(query); // Execute query

@@ -37,16 +37,16 @@ public class HelloWorld extends HttpServlet {
 		out.println("<html><head><title>My First display from DB</title></head>");
 		try {
 		 JDBC j = new JDBC();
-		 j.configureDbQuery();
-		//List<Object> rp = j.configureDbQuery();
-		/*
+		 //j.configureDbQuery();
+		List<Object> rp = j.configureDbQuery();
+		
 		request.setAttribute("myresult", rp);
 		request.getRequestDispatcher("HTML/stud_form.jsp").forward(request, response);
 		out.println("<body> <h2> Welcome to My First Servlet Folks</h2></body></html>");
-		*/
+		
 		}
 	catch(Exception e) {
-		System.out.println(e);
+		System.err.println("User Error Message:"+e);
 	} 
 		
 	}
