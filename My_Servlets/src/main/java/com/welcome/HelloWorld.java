@@ -14,6 +14,7 @@ import java.util.List;
 /**
  * Servlet implementation class HelloWorld
  */
+
 public class HelloWorld extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -29,7 +30,7 @@ public class HelloWorld extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
     
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    /** 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
@@ -49,7 +50,36 @@ public class HelloWorld extends HttpServlet {
 		System.err.println("User Error Message:"+e);
 	} 
 		
+	}   
+	 */
+
+	public void doPost(HttpServletRequest req , HttpServletResponse res)
+			throws ServletException , IOException{
+				JDBC j1 = new JDBC();
+				System.out.println("Entering into DB Auth Connection");
+		try {
+			
+			Connection con1 = j1.configureDbQuery();
+		PreparedStatement pst = con1.prepareStatement("Insert into emp_table values(?,?,?,?,?)");
+	       pst.setInt(1,Integer.valueOf(req.getParameter("sid")));
+	       pst.setString(2,req.getParameter("sname"));
+	       pst.setString(3,req.getParameter("sclass"));
+	       pst.setInt(4,Integer.valueOf(req.getParameter("sage")));
+	       pst.setInt(5,Integer.valueOf(req.getParameter("smarks")));
+	       pst.executeUpdate();
+	       pst.close();
+	       con1.close();
+	       PrintWriter pw = res.getWriter();
+	       pw.println("<html> <body>"
+	                   +"<h2>Successfully Entered the data into emp_table</h2>"
+	    		       +"</body></html>");
+	       		
 	}
+		catch(Exception s) {
+			s.printStackTrace();
+		}
+
+}
 }
 
 	

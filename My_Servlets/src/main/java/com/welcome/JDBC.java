@@ -4,23 +4,23 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 public class JDBC {
-	    public List<Object> configureDbQuery() throws Exception
+	    public Connection configureDbQuery() throws Exception  //(Previous return type was List<Object>
 	    {
-	    	Student std = new Student();
+	    	//Student std = new Student();
 	    	String url
 	            = "jdbc:mysql://localhost:3306/demodatabase"; // table details
 	        String username = "root"; // MySQL credentials
 	        String password = "Harapani@tsdfg53";
-	        String query
-	            = "select *from stud_table"; // query to be run
-	        ResultSet rs = null ;
-	        List<Object> stu_list = new ArrayList<>();
+	        //String query= "select *from stud_table"; // query to be run
+	       // ResultSet rs = null ;
+	       // List<Object> stu_list = new ArrayList<>();
+	        Connection con = null;
 	        try {
 	        Class.forName("com.mysql.cj.jdbc.Driver"); // Driver name
-	        Connection con = DriverManager.getConnection(url, username, password);
-	        System.out.println("Connection Established successfully");
-	        
-	        Statement st = con.createStatement();
+	        con = DriverManager.getConnection(url, username, password);
+	       System.out.println("Connection Established successfully");
+	      
+	     /*   Statement st = con.createStatement();
 	        rs = st.executeQuery(query); // Execute query
 	    
 	 		while(rs.next()) {
@@ -47,8 +47,16 @@ public class JDBC {
 	        }
 			return stu_list;
 	       
-	    }
+	    } */
 //	    return stu_list;
+	              
+	        }
+	        catch (Exception g) {
+	        	System.err.println("Post Error Exception");
+	        }
+	        return con;
+	    }
+	          
 	}
 
 
